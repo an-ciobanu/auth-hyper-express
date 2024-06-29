@@ -1,0 +1,41 @@
+{
+  "name": "auth-hyper-express",
+  "version": "1.0.0",
+  "description": "Authentification microservice for sign up and sign in flows in a web app",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint .",
+    "dev": "ts-node src/index.ts"
+  },
+  "keywords": [
+    "sign-in",
+    "sign-up",
+    "auth",
+    "nodejs",
+    "hyper-express"
+  ],
+  "author": "anciobanu",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "hyper-express": "^6.16.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.3",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/dotenv": "^8.2.0",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^20.14.8",
+    "eslint": "^8.56.0",
+    "globals": "^15.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.2",
+    "typescript-eslint": "^7.13.1"
+  }
+}
