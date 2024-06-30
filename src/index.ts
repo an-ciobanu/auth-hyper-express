@@ -9,7 +9,7 @@ import connectDB from "./config/database";
 // Setting up the config for the process envs
 dotenv.config();
 
-async function main() {
+export async function main() {
   //We await the app function
   const app = await createApp();
 

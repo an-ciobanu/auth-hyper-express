@@ -1,16 +1,23 @@
-import { Server } from 'hyper-express';
-import createServer from '../src/app';
-import UserRouter from '../src/user/user.controller';
+import { Server } from "hyper-express";
+
+import createServer from "../src/app";
+import UserRouter from "../src/user/user.controller";
 
 // Mock Server from hyper-express
-jest.mock('hyper-express', () => ({
+jest.mock("hyper-express", () => ({
   Server: jest.fn().mockImplementation(() => ({
     use: jest.fn(),
   })),
 }));
 
-describe('createServer function', () => {
-  it('should set up server with UserRouter', async () => {
+// Mock UserRouter
+jest.mock("../src/user/user.controller", () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
+
+describe("createServer function", () => {
+  it("should set up server with UserRouter", async () => {
     // Arrange
     const mockAppInstance = {
       use: jest.fn(),
@@ -20,13 +27,13 @@ describe('createServer function', () => {
     (Server as jest.Mock).mockImplementationOnce(() => mockAppInstance);
 
     // Act
-    const app = await createServer();
+    await createServer();
 
     // Assert
     expect(Server).toHaveBeenCalledTimes(1);
     expect(Server).toHaveBeenCalledWith();
 
     expect(mockAppInstance.use).toHaveBeenCalledTimes(1);
-    expect(mockAppInstance.use).toHaveBeenCalledWith('/', UserRouter);
+    expect(mockAppInstance.use).toHaveBeenCalledWith("/", UserRouter);
   });
 });

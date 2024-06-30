@@ -68,9 +68,9 @@ router.post(SIGN_UP_ENDPOINT, async (req: Request, res: Response) => {
       password,
     });
 
-    //We sue the createToken function to set a cookie on the client
+    //We use the createToken function to set a cookie on the client
     //and then we return the data for the suer we created
-    return res.cookie("token", createToken(user)).status(200).json(createdUser);
+    return res.cookie("token", createToken(user.toJSON())).status(200).json(createdUser);
   } catch (e) {
     console.log(e);
     return res
@@ -115,7 +115,7 @@ router.post(SIGN_IN_ENDPOINT, async (req: Request, res: Response) => {
     //If we got here, all checks are good
     //User exists, password matches
     //We return the user data and we set the token cookie
-    return res.cookie("token", createToken(user)).status(200).json({
+    return res.cookie("token", createToken(user.toJSON())).status(200).json({
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
